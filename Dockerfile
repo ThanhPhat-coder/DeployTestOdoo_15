@@ -21,7 +21,7 @@ COPY ./addons /mnt/extra-addons
 COPY ./odoo.conf /etc/odoo/odoo.conf
 COPY ./requirements.txt /odoo/requirements.txt
 COPY ./entrypoint.sh /entrypoint.sh
-COPY ./mydb.dump /mydb.dump
+COPY ./recruitment_db.dump /recruitment_db.dump
 
 # Install Python dependencies
 RUN pip install --upgrade pip && pip install -r /odoo/requirements.txt
