@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- ================= Root Menu ================= -->
+        <menuitem id="menu_education_root" name="Education" sequence="1"/>
+
+        <!-- ================= Tree View ================= -->
+        <record id="view_enrollment_tree" model="ir.ui.view">
+            <field name="name">education.enrollment.tree</field>
+            <field name="model">education.enrollment</field>
+            <field name="arch" type="xml">
+                <tree string="Enrollments" decoration-danger="state=='cancel'" decoration-success="state=='done'">
+                    <field name="student_id"/>
+                    <field name="course_id"/>
+                    <field name="enroll_date"/>
+                    <field name="state"/>
+                    <field name="grade"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ================= Form View ================= -->
+        <record id="view_enrollment_form" model="ir.ui.view">
+            <field name="name">education.enrollment.form</field>
+            <field name="model">education.enrollment</field>
+            <field name="arch" type="xml">
+                <form string="Enrollment">
+                    <header>
+                        <button name="action_confirm" type="object" string="Confirm" states="draft" class="btn-primary"/>
+                        <button name="action_start" type="object" string="Start" states="confirmed" class="btn-primary"/>
+                        <button name="action_done" type="object" string="Done" states="in_progress" class="btn-success"/>
+                        <button name="action_cancel" type="object" string="Cancel" states="draft,confirmed,in_progress" class="btn-danger"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,in_progress,done,cancel"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="student_id"/>
+                            <field name="course_id"/>
+                            <field name="enroll_date"/>
+                            <field name="grade"/>
+                        </group>
+                        <group>
+                            <field name="note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- ================= Search View ================= -->
+        <record id="view_enrollment_search" model="ir.ui.view">
+            <field name="name">education.enrollment.search</field>
+            <field name="model">education.enrollment</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="student_id"/>
+                    <field name="course_id"/>
+                    <filter string="Draft" name="filter_draft" domain="[('state','=','draft')]"/>
+                    <filter string="Confirmed" name="filter_confirmed" domain="[('state','=','confirmed')]"/>
+                    <filter string="In Progress" name="filter_in_progress" domain="[('state','=','in_progress')]"/>
+                    <filter string="Done" name="filter_done" domain="[('state','=','done')]"/>
+                    <filter string="Cancelled" name="filter_cancel" domain="[('state','=','cancel')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Course" name="group_course" context="{'group_by':'course_id'}"/>
+                        <filter string="Student" name="group_student" context="{'group_by':'student_id'}"/>
+                        <filter string="State" name="group_state" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- ================= Kanban View ================= -->
+        <record id="view_enrollment_kanban" model="ir.ui.view">
+            <field name="name">education.enrollment.kanban</field>
+            <field name="model">education.enrollment</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="state">
+                    <field name="student_id"/>
+                    <field name="course_id"/>
+                    <field name="enroll_date"/>
+                    <field name="grade"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="o_kanban_record">
+                                <strong>
+                                    <field name="student_id"/>
+                                </strong>
+                                <div>
+                                    <span>Course:</span>
+                                    <field name="course_id"/>
+                                </div>
+                                <div>
+                                    <span>Date:</span>
+                                    <field name="enroll_date"/>
+                                </div>
+                                <div>
+                                    <span>Grade:</span>
+                                    <field name="grade"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- ================= Action ================= -->
+        <record id="action_enrollments" model="ir.actions.act_window">
+            <field name="name">Enrollments</field>
+            <field name="res_model">education.enrollment</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="search_view_id" ref="view_enrollment_search"/>
+        </record>
+
+        <!-- ================= Menu Item ================= -->
+        <menuitem id="menu_enrollments" name="Enrollments" parent="menu_education_root" action="action_enrollments" sequence="3"/>
+
+    </data>
+</odoo>

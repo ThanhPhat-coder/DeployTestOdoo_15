@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Partners (required for students) -->
+        <record id="partner_john" model="res.partner">
+            <field name="name">John Doe</field>
+            <field name="email">john@example.com</field>
+            <field name="phone">123456789</field>
+        </record>
+
+        <record id="partner_jane" model="res.partner">
+            <field name="name">Jane Smith</field>
+            <field name="email">jane@example.com</field>
+            <field name="phone">987654321</field>
+        </record>
+
+        <!-- Students -->
+        <record id="student_john" model="education.student">
+            <field name="name">John Doe</field>
+            <field name="partner_id" ref="partner_john"/>
+            <field name="email">john@example.com</field>
+            <field name="phone">123456789</field>
+        </record>
+
+        <record id="student_jane" model="education.student">
+            <field name="name">Jane Smith</field>
+            <field name="partner_id" ref="partner_jane"/>
+            <field name="email">jane@example.com</field>
+            <field name="phone">987654321</field>
+        </record>
+
+        <!-- Courses -->
+        <record id="course_python" model="education.course">
+            <field name="name">Python Programming</field>
+            <field name="description">Learn Python from basics to advanced.</field>
+            <field name="start_date">2025-10-01</field>
+            <field name="end_date">2025-12-31</field>
+            <field name="seats">30</field>
+        </record>
+
+        <record id="course_datascience" model="education.course">
+            <field name="name">Data Science</field>
+            <field name="description">Introduction to Data Science with Python.</field>
+            <field name="start_date">2025-11-01</field>
+            <field name="end_date">2026-01-31</field>
+            <field name="seats">25</field>
+        </record>
+
+        <!-- Enrollments -->
+        <record id="enrollment_john_python" model="education.enrollment">
+            <field name="student_id" ref="student_john"/>
+            <field name="course_id" ref="course_python"/>
+            <field name="enroll_date">2025-09-23</field>
+            <field name="state">draft</field>
+            <field name="grade">0</field>
+        </record>
+
+        <record id="enrollment_jane_datascience" model="education.enrollment">
+            <field name="student_id" ref="student_jane"/>
+            <field name="course_id" ref="course_datascience"/>
+            <field name="enroll_date">2025-09-23</field>
+            <field name="state">draft</field>
+            <field name="grade">0</field>
+        </record>
+
+    </data>
+</odoo>

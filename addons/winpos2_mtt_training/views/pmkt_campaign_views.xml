@@ -1,0 +1,49 @@
+<odoo>
+    <record id="view_pmkt_campaign_tree" model="ir.ui.view">
+        <field name="name">pmkt.campaign.tree</field>
+        <field name="model">pmkt.campaign</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="budget"/>
+                <field name="currency_id"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pmkt_campaign_form" model="ir.ui.view">
+        <field name="name">pmkt.campaign.form</field>
+        <field name="model">pmkt.campaign</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="budget"/>
+                        <field name="currency_id"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_pmkt_campaign_search" model="ir.ui.view">
+        <field name="name">pmkt.campaign.search</field>
+        <field name="model">pmkt.campaign</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="budget"/>
+                <filter name="active" string="Active" domain="[('active','=',True)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_pmkt_campaign" model="ir.actions.act_window">
+        <field name="name">Campaigns</field>
+        <field name="res_model">pmkt.campaign</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

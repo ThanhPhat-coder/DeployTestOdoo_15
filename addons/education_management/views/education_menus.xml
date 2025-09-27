@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Root menu -->
+        <menuitem id="menu_education_root" name="Education Management"/>
+
+        <!-- Submenus -->
+        <menuitem id="menu_education_students" name="Students" parent="menu_education_root" action="action_students"/>
+
+        <menuitem id="menu_education_courses" name="Courses" parent="menu_education_root" action="action_courses"/>
+
+        <menuitem id="menu_education_enrollments" name="Enrollments" parent="menu_education_root" action="action_enrollments"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,5 @@
+<odoo>
+    <menuitem id="menu_pmkt_root" name="Marketing Training" sequence="10"/>
+    <menuitem id="menu_pmkt_campaign" name="Campaigns"
+              parent="menu_pmkt_root" action="action_pmkt_campaign"/>
+</odoo>

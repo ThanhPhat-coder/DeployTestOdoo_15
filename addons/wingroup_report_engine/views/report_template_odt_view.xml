@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="report_template_odt_tree">
+        <field name="name">wg.report.template.odt.tree</field>
+        <field name="model">wg.report.template.odt</field>
+        <field name="arch" type="xml">
+            <tree string="Mẫu bản in ODT">
+                <field name="create_date"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="type"/>
+                <field name="inv_serial"/>
+                <field name="config_sign_date"/>
+                <field name="company_vat"/>
+                <field name="company_name" widget="text"/>
+                <field name="company_address" widget="text" optional="hide"/>
+                <field name="image_logo" widget="image" width="50" height="50"/>
+                <field name="note"/>
+                <field name="state" widget="badge"  decoration-warning="state == 'new'" decoration-success="state == 'use'" decoration-danger="state == 'cancel'"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="report_template_odt_form">
+        <field name="name">wg.report.template.odt.form</field>
+        <field name="model">wg.report.template.odt</field>
+        <field name="arch" type="xml">
+            <form string="Mẫu bản in ODT">
+                <header>
+                    <button name="action_confirm" class="oe_highlight" states="new" string="Xác nhận mẫu" type="object" icon="fa-send"/>
+                    <button name="action_draft" states="use,cancel"  class="btn btn-info" string="Đặt lại" type="object" icon="fa-refresh"/>
+                    <button name="action_cancel" states="new,use" class="btn btn-danger" string="Hủy mẫu" type="object" icon="fa-trash"/>
+                
+                    <button name="test_tmp_file" class="btn btn-warning" string="In file tạm" type="object" icon="fa-print"/>
+                    <button name="test_store_file" class="btn btn-warning" string="Lưu trữ file" type="object" icon="fa-file"/>
+                    <button name="btn_convert_xml_json" class="btn btn-warning" string="Chuyển đổi XML-Json" type="object" icon="fa-refresh"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="print_type" widget="radio" options="{'horizontal': true}"/>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="type"/>
+                            <field name="inv_serial"/>
+                            <field name="company_vat"/>
+                            <field name="company_name" widget="text"/>
+                            <field name="company_address" widget="text"/>
+                            <field name="config_sign_date"/>
+                          
+                        </group>
+                        <group>
+                            <field name="inv_template_data" filename="inv_template_filename"/>
+                            <field name="inv_template_filename" invisible="1"/>
+                            <field name="inv_template_xml" filename="inv_template_xml_name"/>
+                            <field name="inv_template_xml_name" invisible="1"/>
+                            <field name="image_logo" widget="image" width="100" height="100"/>
+                            <field name="image_background" widget="image" width="200" height="200"/>
+                            <field name="image_sign" widget="image" width="300" height="100"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Dữ liệu mẫu">
+                            <field name="sample_data"/>
+                        </page>
+                        <page string="Ghi chú">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_report_template_odt" model="ir.actions.act_window">
+        <field name="name">Mẫu bản in ODT</field>
+        <field name="res_model">wg.report.template.odt</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+</odoo>
