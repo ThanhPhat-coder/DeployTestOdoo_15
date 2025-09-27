@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /odoo
 
 # Sao chép toàn bộ mã nguồn Odoo vào container
-COPY ./odoo-15.0 /odoo
+COPY . /odoo
 
 # Sao chép các addons tùy chỉnh (nếu có)
 COPY ./addons /mnt/extra-addons
