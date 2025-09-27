@@ -10,6 +10,9 @@ RUN apt-get update && apt-get install -y \
     python3-dev \
     python3-venv \
     postgresql-client \
+    libldap2-dev \
+    libsasl2-dev \
+    libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
