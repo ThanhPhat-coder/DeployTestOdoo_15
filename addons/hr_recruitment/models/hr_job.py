@@ -22,22 +22,22 @@ class Job(models.Model):
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
         help="Address where employees are working")
     application_ids = fields.One2many('hr.applicant', 'job_id', "Job Applications")
-    application_count = fields.Integer(compute='_compute_application_count', string="Application Count")
-    all_application_count = fields.Integer(compute='_compute_all_application_count', string="All Application Count")
+    application_count = fields.Integer(compute='_compute_application_count', string="Số Lượng Ứng Viên")
+    all_application_count = fields.Integer(compute='_compute_all_application_count', string="Tất Cả Ứng Viên")
     new_application_count = fields.Integer(
-        compute='_compute_new_application_count', string="New Application",
+        compute='_compute_new_application_count', string="Ứng Viên Mới",
         help="Number of applications that are new in the flow (typically at first step of the flow)")
     old_application_count = fields.Integer(
-        compute='_compute_old_application_count', string="Old Application")
+        compute='_compute_old_application_count', string="Ứng Viên Cũ")
     manager_id = fields.Many2one(
-        'hr.employee', related='department_id.manager_id', string="Department Manager",
+        'hr.employee', related='department_id.manager_id', string="Quản Lý Phòng Ban",
         readonly=True, store=True)
     user_id = fields.Many2one('res.users', "Recruiter", tracking=True)
     hr_responsible_id = fields.Many2one(
         'res.users', "HR Responsible", tracking=True,
         help="Person responsible of validating the employee's contracts.")
-    document_ids = fields.One2many('ir.attachment', compute='_compute_document_ids', string="Documents")
-    documents_count = fields.Integer(compute='_compute_document_ids', string="Document Count")
+    document_ids = fields.One2many('ir.attachment', compute='_compute_document_ids', string="Tài Liệu")
+    documents_count = fields.Integer(compute='_compute_document_ids', string="Số Lượng Tài Liệu")
     alias_id = fields.Many2one(
         'mail.alias', "Alias", ondelete="restrict", required=True,
         help="Email alias for this job position. New emails will automatically create new applicants for this job position.")

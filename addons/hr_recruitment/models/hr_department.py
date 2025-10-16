@@ -7,11 +7,11 @@ class HrDepartment(models.Model):
     _inherit = 'hr.department'
 
     new_applicant_count = fields.Integer(
-        compute='_compute_new_applicant_count', string='New Applicant')
+        compute='_compute_new_applicant_count', string='Ứng viên mới')
     new_hired_employee = fields.Integer(
-        compute='_compute_recruitment_stats', string='New Hired Employee')
+        compute='_compute_recruitment_stats', string='Nhân viên mới tuyển')
     expected_employee = fields.Integer(
-        compute='_compute_recruitment_stats', string='Expected Employee')
+        compute='_compute_recruitment_stats', string='Nhân viên dự kiến')
 
     def _compute_new_applicant_count(self):
         applicant_data = self.env['hr.applicant'].read_group(

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="1">
+    <data>
 
         <!--Manage the job_id to get in hr.applicant-->
         <record id="hr.job_developer" model="hr.job">

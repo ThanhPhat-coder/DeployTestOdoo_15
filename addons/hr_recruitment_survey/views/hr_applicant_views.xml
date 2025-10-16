@@ -21,15 +21,10 @@
                 <button name="action_send_survey" string="SEND INTERVIEW" type="object"/>
             </xpath>
             <xpath expr="//button[@name='action_makeMeeting']" position="after">
-                <button name="action_print_survey"
-                    class="oe_stat_button"
-                    icon="fa-pencil-square-o"
-                    type="object"
-                    help="See interview report"
-                    attrs="{'invisible':['|',('survey_id','=',False),('response_id','=',False)]}">
+                <button name="action_print_survey" class="oe_stat_button" icon="fa-pencil-square-o" type="object" help="See interview report" attrs="{'invisible':['|',('survey_id','=',False),('response_id','=',False)]}">
                     <div class="o_field_widget o_stat_info">
-                        <span class="o_stat_text">Consult</span>
-                        <span class="o_stat_text">Interview</span>
+                        <span class="o_stat_text">Tư Vấn</span>
+                        <span class="o_stat_text">Phỏng Vấn</span>
                     </div>
                 </button>
             </xpath>

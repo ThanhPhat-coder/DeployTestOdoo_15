@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="1">
+<odoo>
 
     <record model="ir.module.category" id="base.module_category_human_resources_recruitment">
-        <field name="description">Helps you manage your recruitments.</field>
+        <field name="description">Giúp bạn quản lý việc tuyển dụng.</field>
         <field name="sequence">11</field>
     </record>
 
     <record id="hr_applicant_comp_rule" model="ir.rule">
-        <field name="name">Applicant multi company rule</field>
+        <field name="name">Quy Tắc Ứng Viên</field>
         <field name="model_id" ref="model_hr_applicant"/>
         <field eval="True" name="global"/>
         <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>

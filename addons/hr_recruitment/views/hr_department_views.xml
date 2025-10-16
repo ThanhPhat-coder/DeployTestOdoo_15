@@ -17,7 +17,7 @@
                     <div t-if="record.new_applicant_count.raw_value > 0" class="row ml16">
                         <div class="col-9">
                             <a name="%(hr_applicant_action_from_department)d" type="action">
-                                New Applicants
+                                Thêm Ứng Viên Mới
                             </a>
                         </div>
                         <div class="col-3 text-right">
@@ -28,7 +28,7 @@
 
                 <xpath expr="//div[hasclass('o_kanban_manage_reports')]" position="inside">
                     <a role="menuitem" class="dropdown-item" name="%(action_hr_recruitment_report_filtered_department)d" type="action">
-                        Recruitments
+                        Tuyển dụng
                     </a>
                 </xpath>
             </data>
@@ -36,11 +36,10 @@
     </record>
 
     <record id="action_hr_department" model="ir.actions.act_window">
-        <field name="name">Departments</field>
+        <field name="name">Các Phòng Ban</field>
         <field name="res_model">hr.department</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="menu_hr_department" name="Departments"
-            parent="menu_hr_recruitment_configuration" action="action_hr_department"/>
+    <menuitem id="menu_hr_department" name="Phòng Ban" parent="menu_hr_recruitment_configuration" action="action_hr_department"/>
 </odoo>

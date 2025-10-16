@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//div[hasclass('settings')]" position="inside">
                     <div class="app_settings_block" data-string="Recruitment" string="Recruitment" data-key="hr_recruitment" groups="hr_recruitment.group_hr_recruitment_manager">
-                        <h2>Job Posting</h2>
+                        <h2>Vị Trí Công Việc</h2>
                         <div class="row mt16 o_settings_container" name="online_posting_setting_container">
                             <div class="col-12 col-lg-6 o_setting_box" id="publish_available_jobs_setting">
                                 <div class="o_setting_left_pane">
@@ -18,24 +18,21 @@
                                 <div class="o_setting_right_pane">
                                     <label for="module_website_hr_recruitment" string="Online Posting"/>
                                     <div class="text-muted">
-                                        Publish available jobs on your website
+                                        Đăng tin tuyển dụng trên trang web của bạn
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <h2>Recruitment Process</h2>
+                        <h2>Quy trình tuyển dụng</h2>
                         <div class="row mt16 o_settings_container" name="recruitment_process_div">
-                            <div class="col-12 col-lg-6 o_setting_box"
-                                id="interview_forms_setting"
-                                title="Use interview forms tailored to each job position during the recruitment process. Select the form to use in the job position detail form. This relies on the Survey app.">
+                            <div class="col-12 col-lg-6 o_setting_box" id="interview_forms_setting" title="Use interview forms tailored to each job position during the recruitment process. Select the form to use in the job position detail form. This relies on the Survey app.">
                                 <div class="o_setting_left_pane">
                                     <field name="module_hr_recruitment_survey"/>
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_hr_recruitment_survey" string="Send Interview Survey"/>
                                     <div class="text-muted">
-                                        Send an Interview Survey to the applicant during
-                                        the recruitment process
+                                        Gửi Khảo sát Phỏng vấn cho ứng viên trong quá trình tuyển dụng
                                     </div>
                                     <div class="content-group" id="interview_forms"/>
                                 </div>
@@ -47,7 +44,7 @@
         </record>
 
         <record id="action_hr_recruitment_configuration" model="ir.actions.act_window">
-            <field name="name">Settings</field>
+            <field name="name">Cài Đặt</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">res.config.settings</field>
             <field name="view_mode">form</field>
@@ -55,8 +52,6 @@
             <field name="context">{'module' : 'hr_recruitment', 'bin_size': False}</field>
         </record>
 
-        <menuitem id="menu_hr_recruitment_global_settings" name="Settings"
-            parent="menu_hr_recruitment_configuration" sequence="0" action="action_hr_recruitment_configuration"
-            groups="base.group_system"/>
+        <menuitem id="menu_hr_recruitment_global_settings" name="Cài Đặt" parent="menu_hr_recruitment_configuration" sequence="0" action="action_hr_recruitment_configuration" groups="base.group_system"/>
     </data>
 </odoo>

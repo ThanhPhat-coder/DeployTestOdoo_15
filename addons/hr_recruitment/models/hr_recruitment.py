@@ -54,7 +54,7 @@ class RecruitmentStage(models.Model):
         "Sequence", default=10,
         help="Gives the sequence order when displaying a list of stages.")
     job_ids = fields.Many2many(
-        'hr.job', string='Job Specific',
+        'hr.job', string='Công việc cụ thể',
         help='Specific jobs that uses this stage. Other jobs will not use this stage.')
     requirements = fields.Text("Requirements")
     template_id = fields.Many2one(
@@ -124,7 +124,7 @@ class Applicant(models.Model):
                                group_expand='_read_group_stage_ids')
     last_stage_id = fields.Many2one('hr.recruitment.stage', "Last Stage",
                                     help="Stage of the applicant before being in the current stage. Used for lost cases analysis.")
-    categ_ids = fields.Many2many('hr.applicant.category', string="Tags")
+    categ_ids = fields.Many2many('hr.applicant.category', string="Thẻ")
     company_id = fields.Many2one('res.company', "Company", compute='_compute_company', store=True, readonly=False, tracking=True)
     user_id = fields.Many2one(
         'res.users', "Recruiter", compute='_compute_user',
@@ -148,15 +148,15 @@ class Applicant(models.Model):
     department_id = fields.Many2one(
         'hr.department', "Department", compute='_compute_department', store=True, readonly=False,
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]", tracking=True)
-    day_open = fields.Float(compute='_compute_day', string="Days to Open", compute_sudo=True)
-    day_close = fields.Float(compute='_compute_day', string="Days to Close", compute_sudo=True)
-    delay_close = fields.Float(compute="_compute_day", string='Delay to Close', readonly=True, group_operator="avg", help="Number of days to close", store=True)
+    day_open = fields.Float(compute='_compute_day', string="Ngày Mở", compute_sudo=True)
+    day_close = fields.Float(compute='_compute_day', string="Ngày Đóng", compute_sudo=True)
+    delay_close = fields.Float(compute="_compute_day", string='Trì hoãn để đóng', readonly=True, group_operator="avg", help="Number of days to close", store=True)
     color = fields.Integer("Color Index", default=0)
-    emp_id = fields.Many2one('hr.employee', string="Employee", help="Employee linked to the applicant.", copy=False)
+    emp_id = fields.Many2one('hr.employee', string="Nhân Viên", help="Employee linked to the applicant.", copy=False)
     user_email = fields.Char(related='user_id.email', string="User Email", readonly=True)
-    attachment_number = fields.Integer(compute='_get_attachment_number', string="Number of Attachments")
-    employee_name = fields.Char(related='emp_id.name', string="Employee Name", readonly=False, tracking=False)
-    attachment_ids = fields.One2many('ir.attachment', 'res_id', domain=[('res_model', '=', 'hr.applicant')], string='Attachments')
+    attachment_number = fields.Integer(compute='_get_attachment_number', string="Số lượng tệp đính kèm")
+    employee_name = fields.Char(related='emp_id.name', string="Tên nhân viên", readonly=False, tracking=False)
+    attachment_ids = fields.One2many('ir.attachment', 'res_id', domain=[('res_model', '=', 'hr.applicant')], string='Tệp đính kèm')
     kanban_state = fields.Selection([
         ('normal', 'Grey'),
         ('done', 'Green'),
@@ -166,7 +166,7 @@ class Applicant(models.Model):
     legend_done = fields.Char(related='stage_id.legend_done', string='Kanban Valid')
     legend_normal = fields.Char(related='stage_id.legend_normal', string='Kanban Ongoing')
     application_count = fields.Integer(compute='_compute_application_count', help='Applications with the same email')
-    refuse_reason_id = fields.Many2one('hr.applicant.refuse.reason', string='Refuse Reason', tracking=True)
+    refuse_reason_id = fields.Many2one('hr.applicant.refuse.reason', string='Lý Do Từ Chối', tracking=True)
     meeting_ids = fields.One2many('calendar.event', 'applicant_id', 'Meetings')
     meeting_display_text = fields.Char(compute='_compute_meeting_display')
     meeting_display_date = fields.Date(compute='_compute_meeting_display')
@@ -588,5 +588,5 @@ class ApplicantRefuseReason(models.Model):
     _description = 'Refuse Reason of Applicant'
 
     name = fields.Char('Description', required=True, translate=True)
-    template_id = fields.Many2one('mail.template', string='Email Template', domain="[('model', '=', 'hr.applicant')]")
+    template_id = fields.Many2one('mail.template', string='Mẫu Email', domain="[('model', '=', 'hr.applicant')]")
     active = fields.Boolean('Active', default=True)

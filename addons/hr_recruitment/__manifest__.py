@@ -2,7 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 {
-    'name': 'Recruitment',
+    'name': 'Tuyển Dụng',
     'version': '1.1',
     'category': 'Human Resources/Recruitment',
     'sequence': 90,
